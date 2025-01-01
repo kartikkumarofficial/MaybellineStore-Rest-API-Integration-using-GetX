@@ -1,44 +1,25 @@
-/// id : 495
-/// brand : "maybelline"
-/// name : "Maybelline Face Studio Master Hi-Light Light Booster Bronzer"
-/// price : "14.99"
-/// price_sign : null
-/// currency : null
-/// image_link : "https://d3t32hsnjxo7q6.cloudfront.net/i/991799d3e70b8856686979f8ff6dcfe0_ra,w158,h184_pa,w158,h184.png"
-/// product_link : "https://well.ca/products/maybelline-face-studio-master_88837.html"
-/// website_link : "https://well.ca"
-/// description : "Maybelline Face Studio Master Hi-Light Light Boosting bronzer formula has an expert \nbalance of shade + shimmer illuminator for natural glow. Skin goes \nsoft-lit with zero glitz.\n\n\t\tFor Best Results: Brush over all shades in palette and gently sweep over \ncheekbones, brow bones, and temples, or anywhere light naturally touches\n the face.\n\n\t\t\n\t\n\n                    "
-/// rating : 5
-/// category : null
-/// product_type : "bronzer"
-/// tag_list : []
-/// created_at : "2016-10-01T18:36:15.012Z"
-/// updated_at : "2017-12-23T21:08:50.624Z"
-/// product_api_url : "https://makeup-api.herokuapp.com/api/v1/products/495.json"
-/// api_featured_image : "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/495/original/open-uri20171223-4-9hrto4?1514063330"
-/// product_colors : []
-
 class Product {
   Product({
-      num? id, 
-      String? brand, 
-      String? name, 
-      String? price, 
-      dynamic priceSign, 
-      dynamic currency, 
-      String? imageLink, 
-      String? productLink, 
-      String? websiteLink, 
-      String? description, 
-      num? rating, 
-      dynamic category, 
-      String? productType, 
-      List<dynamic>? tagList, 
-      String? createdAt, 
-      String? updatedAt, 
-      String? productApiUrl, 
-      String? apiFeaturedImage, 
-      List<dynamic>? productColors,}){
+    num? id,
+    String? brand,
+    String? name,
+    String? price,
+    dynamic priceSign,
+    dynamic currency,
+    String? imageLink,
+    String? productLink,
+    String? websiteLink,
+    String? description,
+    num? rating,
+    dynamic category,
+    String? productType,
+    List<String>? tagList,
+    String? createdAt,
+    String? updatedAt,
+    String? productApiUrl,
+    String? apiFeaturedImage,
+    List<ProductColor>? productColors,
+  }) {
     _id = id;
     _brand = brand;
     _name = name;
@@ -58,7 +39,7 @@ class Product {
     _productApiUrl = productApiUrl;
     _apiFeaturedImage = apiFeaturedImage;
     _productColors = productColors;
-}
+  }
 
   Product.fromJson(dynamic json) {
     _id = json['id'];
@@ -74,23 +55,17 @@ class Product {
     _rating = json['rating'];
     _category = json['category'];
     _productType = json['product_type'];
-    if (json['tag_list'] != null) {
-      _tagList = [];
-      json['tag_list'].forEach((v) {
-        _tagList?.add(Dynamic.fromJson(v));
-      });
-    }
+    _tagList = json['tag_list'] != null ? List<String>.from(json['tag_list']) : [];
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
     _productApiUrl = json['product_api_url'];
     _apiFeaturedImage = json['api_featured_image'];
-    if (json['product_colors'] != null) {
-      _productColors = [];
-      json['product_colors'].forEach((v) {
-        _productColors?.add(Dynamic.fromJson(v));
-      });
-    }
+    _productColors = json['product_colors'] != null
+        ? List<ProductColor>.from(
+        json['product_colors'].map((v) => ProductColor.fromJson(v)))
+        : [];
   }
+
   num? _id;
   String? _brand;
   String? _name;
@@ -104,51 +79,13 @@ class Product {
   num? _rating;
   dynamic _category;
   String? _productType;
-  List<dynamic>? _tagList;
+  List<String>? _tagList;
   String? _createdAt;
   String? _updatedAt;
   String? _productApiUrl;
   String? _apiFeaturedImage;
-  List<dynamic>? _productColors;
-Product copyWith({  num? id,
-  String? brand,
-  String? name,
-  String? price,
-  dynamic priceSign,
-  dynamic currency,
-  String? imageLink,
-  String? productLink,
-  String? websiteLink,
-  String? description,
-  num? rating,
-  dynamic category,
-  String? productType,
-  List<dynamic>? tagList,
-  String? createdAt,
-  String? updatedAt,
-  String? productApiUrl,
-  String? apiFeaturedImage,
-  List<dynamic>? productColors,
-}) => Product(  id: id ?? _id,
-  brand: brand ?? _brand,
-  name: name ?? _name,
-  price: price ?? _price,
-  priceSign: priceSign ?? _priceSign,
-  currency: currency ?? _currency,
-  imageLink: imageLink ?? _imageLink,
-  productLink: productLink ?? _productLink,
-  websiteLink: websiteLink ?? _websiteLink,
-  description: description ?? _description,
-  rating: rating ?? _rating,
-  category: category ?? _category,
-  productType: productType ?? _productType,
-  tagList: tagList ?? _tagList,
-  createdAt: createdAt ?? _createdAt,
-  updatedAt: updatedAt ?? _updatedAt,
-  productApiUrl: productApiUrl ?? _productApiUrl,
-  apiFeaturedImage: apiFeaturedImage ?? _apiFeaturedImage,
-  productColors: productColors ?? _productColors,
-);
+  List<ProductColor>? _productColors;
+
   num? get id => _id;
   String? get brand => _brand;
   String? get name => _name;
@@ -162,12 +99,12 @@ Product copyWith({  num? id,
   num? get rating => _rating;
   dynamic get category => _category;
   String? get productType => _productType;
-  List<dynamic>? get tagList => _tagList;
+  List<String>? get tagList => _tagList;
   String? get createdAt => _createdAt;
   String? get updatedAt => _updatedAt;
   String? get productApiUrl => _productApiUrl;
   String? get apiFeaturedImage => _apiFeaturedImage;
-  List<dynamic>? get productColors => _productColors;
+  List<ProductColor>? get productColors => _productColors;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -184,9 +121,7 @@ Product copyWith({  num? id,
     map['rating'] = _rating;
     map['category'] = _category;
     map['product_type'] = _productType;
-    if (_tagList != null) {
-      map['tag_list'] = _tagList?.map((v) => v.toJson()).toList();
-    }
+    map['tag_list'] = _tagList;
     map['created_at'] = _createdAt;
     map['updated_at'] = _updatedAt;
     map['product_api_url'] = _productApiUrl;
@@ -196,5 +131,23 @@ Product copyWith({  num? id,
     }
     return map;
   }
+}
 
+class ProductColor {
+  String? hexValue;
+  String? colorName;
+
+  ProductColor({this.hexValue, this.colorName});
+
+  ProductColor.fromJson(dynamic json) {
+    hexValue = json['hex_value'];
+    colorName = json['colour_name'];
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'hex_value': hexValue,
+      'colour_name': colorName,
+    };
+  }
 }
