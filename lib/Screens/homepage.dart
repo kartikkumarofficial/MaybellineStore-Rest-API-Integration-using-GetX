@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:shoppingapp/Controllers/product_controller.dart';
 import 'package:get/get.dart';
+import 'package:shoppingapp/Screens/product_tile.dart';
 import 'package:shoppingapp/models/Product.dart';
 
 
@@ -47,12 +48,14 @@ class _homePageState extends State<homePage> {
                 // itemCount: ProductController.productList.length, // Total number of items to display
                 itemCount: widget.productController.productList.length, // Total number of items to display
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    height: 100,
-                    width: 100,
-                    color: Colors.red,
-                    child: Center(child: Text('Item $index')),
-                  );
+                  return ProductTile(ProductController.productList[index]);
+
+                  //   Container(
+                  //   height: 100,
+                  //   width: 100,
+                  //   color: Colors.red,
+                  //   child: Center(child: Text('Item $index')),
+                  // );
                 },
               ),)
             ),

@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shoppingapp/Services/remote_services.dart';
 import 'package:shoppingapp/models/Product.dart';
 
 class ProductController extends GetxController {
 
   var productList = <Product>[].obs;
+  @override
 
   void fetchProducts() async {
-    
+    var products = await RemoteServices.fetchProducts();
+    if(products!=null){
+      productList.value = products;
+
+    }
+
+
 
   }
 
