@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:shoppingapp/Controllers/product_controller.dart';
 import 'package:get/get.dart';
-import 'package:shoppingapp/Controllers/product_controller.dart';
+import 'package:shoppingapp/models/Product.dart';
+
 
 class homePage extends StatefulWidget {
   final ProductController productController= Get.put(ProductController());
@@ -43,7 +44,8 @@ class _homePageState extends State<homePage> {
                   crossAxisSpacing: 8.0, // Horizontal spacing between items
                   mainAxisSpacing: 8.0, // Vertical spacing between items
                 ),
-                itemCount: ProductController.productList.length, // Total number of items to display
+                // itemCount: ProductController.productList.length, // Total number of items to display
+                itemCount: widget.productController.productList.length, // Total number of items to display
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
                     height: 100,

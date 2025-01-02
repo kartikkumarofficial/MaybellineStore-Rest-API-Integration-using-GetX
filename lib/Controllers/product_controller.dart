@@ -6,6 +6,11 @@ class ProductController extends GetxController {
 
   var productList = <Product>[].obs;
 
+  void fetchProducts() async {
+    
+
+  }
+
   // Example method to add a product
   void addProduct(Product product) {
     productList.add(product);
