@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:shoppingapp/models/product.dart';
+import 'package:shoppingapp/models/Product.dart';
 
 class ProductTile extends StatelessWidget {
   final Product product;
-  const ProductTile(this.product);
+  const ProductTile(this.product, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,70 +14,39 @@ class ProductTile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              children: [
-                Container(
-                  height: 180,
-                  width: double.infinity,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Image.network(
-                    product.imageLink,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Positioned(
-                  right: 0,
-                  child: Obx(() => CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: IconButton(
-                      icon: product.isFavorite.value
-                          ? Icon(Icons.favorite_rounded)
-                          : Icon(Icons.favorite_border),
-                      onPressed: () {
-                        product.isFavorite.toggle();
-                      },
-                    ),
-                  )),
-                )
-              ],
+            Container(
+              height: 168,
+              width: double.infinity,
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Image.network(
+                product.imageLink,
+                fit: BoxFit.cover,
+              ),
             ),
             SizedBox(height: 8),
             Text(
               product.name,
               maxLines: 2,
+              overflow: TextOverflow.ellipsis,
               style:
               TextStyle(fontFamily: 'avenir', fontWeight: FontWeight.w800),
-              overflow: TextOverflow.ellipsis,
             ),
             SizedBox(height: 8),
             if (product.rating != null)
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      product.rating.toString(),
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Icon(
-                      Icons.star,
-                      size: 16,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
+              Row(
+                children: [
+                  Icon(Icons.star, color: Colors.yellow),
+                  Text(product.rating.toString()),
+                ],
               ),
             SizedBox(height: 8),
-            Text('\$${product.price}',
-                style: TextStyle(fontSize: 32, fontFamily: 'avenir')),
+            Text(
+              '\$${product.price}',
+              style: TextStyle(fontSize: 24, fontFamily: 'avenir'),
+            ),
           ],
         ),
       ),
