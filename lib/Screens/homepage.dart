@@ -10,7 +10,7 @@ class homePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Shopping App"),
+        title: Text("Maybelline Store"),
       ),
       body: Obx(() {
         if (productController.productList.isEmpty) {
